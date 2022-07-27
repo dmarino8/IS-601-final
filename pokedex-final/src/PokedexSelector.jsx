@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import './PokedexSelector.css';
 
 const PokedexSelector = ({pokedexs, setPokedexSelected}) => {
-   console.log(pokedexs); 
     return (
         pokedexs.map(pokedex =>
         <tr>
