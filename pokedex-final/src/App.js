@@ -6,6 +6,7 @@ const App = () => {
 
     const [hasError, setErrors] = useState(false);
     const [pokedexOptions, setPokedexOptions] = useState([]);
+    const [pokedexSelected, setPokedexSelected] = useState([]);
 
     const fetchData = async () => {
         const response = await fetch("https://pokeapi.co/api/v2/pokedex");
@@ -21,7 +22,7 @@ const App = () => {
     
     return (
         <div>
-            <PokedexSelector pokedexs={pokedexOptions}/>
+            <PokedexSelector pokedexs={pokedexOptions} setPokedexSelected={setPokedexSelected}/>
         </div>
     );
 }
