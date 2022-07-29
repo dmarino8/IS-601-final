@@ -1,20 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PokemonInfoMain from './PokemonInfo/PokemonInfoMain.jsx';
 import PokemonList from './PokemonList.jsx';
-const PokemonSelector = ({pokedex, backToPokedexSelect}) => {
-    
+const PokemonSelector = ({setErrors, P, pokedexSelected, backToPokedexSelect }) => {
+
     const [pokemonOptions, setPokemonOptions] = useState([]);
     const [pokemonSelected, setPokemonSelected] = useState(null);
-    const [hasError, setErrors] = useState(false);
 
     const fetchPokemonData = async () => {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokedex/${pokedex}`);
-        response
-          .json()
-          .then(response => setPokemonOptions(response.pokemon_entries))
-          .catch(err => setErrors(err))
-    }
-    fetchPokemonData();
+        try {
+            const response = (await P.getPokedexByName(pokedexSelected)).pokemon_entries;
+            setPokemonOptions(response)
+        } catch (e) {
+            setErrors("Error, list of pokemon : " + e.message);
+        }
+    };
+    
+    useEffect(() => {
+        fetchPokemonData();
+    })
 
     const back = () => {
         setPokemonSelected(null);
@@ -23,14 +26,14 @@ const PokemonSelector = ({pokedex, backToPokedexSelect}) => {
     const selectDirection = () => {
         if (pokemonSelected === null) {
             return (
-            <div>
-                <button onClick={() => backToPokedexSelect()}>Back</button>
-                <PokemonList pokemonOptions={pokemonOptions} setPokemonSelected={setPokemonSelected} />
-            </div>
+                <div>
+                    <button onClick={() => backToPokedexSelect()}>Back</button>
+                    <PokemonList pokemonOptions={pokemonOptions} setPokemonSelected={setPokemonSelected} />
+                </div>
             )
         } else {
             return (
-                <PokemonInfoMain pokemon={pokemonSelected} back={back}/>
+                <PokemonInfoMain P={P} setErrors={setErrors} pokemonSelected={pokemonSelected} back={back} />
             )
         }
     }

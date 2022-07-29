@@ -2,26 +2,14 @@ import './App.css';
 import React, {useState, useEffect} from 'react';
 import PokedexSelector from './PokedexSelector';
 import PokemonSelector from './PokemonSelector';
+import { Pokedex } from 'pokeapi-js-wrapper';
+const P = new Pokedex();
 
 const App = () => {
 
-    const [hasError, setErrors] = useState(false);
-    const [pokedexOptions, setPokedexOptions] = useState([]);
+    const [hasError, setErrors] = useState(null);
     const [pokedexSelected, setPokedexSelected] = useState(null);
     
-
-    const fetchPokedexData = async () => {
-        const response = await fetch("https://pokeapi.co/api/v2/pokedex");
-        response
-          .json()
-          .then(response => setPokedexOptions(response.results))
-          .catch(err => setErrors(err))
-    };
-    
-
-    useEffect(() => {
-        fetchPokedexData();
-      }, []);
 
       const backToPokedexSelect = () => {
           setPokedexSelected(null)
@@ -31,8 +19,8 @@ const App = () => {
         <div>
             <h1>{pokedexSelected}</h1>
             {pokedexSelected === null ?
-            <PokedexSelector pokedexs={pokedexOptions} setPokedexSelected={setPokedexSelected}/> 
-            : <PokemonSelector pokedex={pokedexSelected} backToPokedexSelect={backToPokedexSelect}/>}
+            <PokedexSelector setErrors={setErrors} P={P} setPokedexSelected={setPokedexSelected}/> 
+            : <PokemonSelector setErrors={setErrors} P={P} pokedexSelected={pokedexSelected} backToPokedexSelect={backToPokedexSelect}/>}
         </div>
     );
 }

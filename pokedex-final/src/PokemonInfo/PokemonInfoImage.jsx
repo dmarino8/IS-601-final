@@ -1,9 +1,9 @@
-const PokemonInfoImage = ({pokemon}) => {
+const PokemonInfoImage = ({pokemonDetails}) => {
 
     return (
         <div>
-            {pokemon !== null ?
-                <img src={pokemon.sprites.front_default}/> :
+            {pokemonDetails !== null ?
+                <img src={pokemonDetails.sprites.front_default}/> :
                 null
             }
         </div>

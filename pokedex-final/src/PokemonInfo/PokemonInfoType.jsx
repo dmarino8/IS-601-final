@@ -1,9 +1,9 @@
-const PokemonInfoType = ({pokemon}) => {
+const PokemonInfoType = ({pokemonDetails}) => {
 
     return (
         <div>
-            {pokemon !== null ?
-                pokemon.types.map(type =>
+            {pokemonDetails !== null ?
+                pokemonDetails.types.map(type =>
                     <h3>{type.type.name}</h3>) :
                 null
             }

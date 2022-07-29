@@ -1,9 +1,9 @@
-const PokemonInfoBaseStats = ({pokemon}) => {
+const PokemonInfoBaseStats = ({pokemonDetails}) => {
 
     return (
         <div>
-            {pokemon !== null ?
-                pokemon.stats.map(stat =>
+            {pokemonDetails !== null ?
+                pokemonDetails.stats.map(stat =>
                     <h3>{stat.stat.name} : {stat.base_stat}</h3>) :
                 null
             }

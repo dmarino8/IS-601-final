@@ -1,23 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PokemonInfoImage from './PokemonInfoImage';
 import PokemonInfoAbilities from './PokemonInfoAbilities';
 import PokemonInfoBaseStats from './PokemonInfoBaseStats';
 import PokemonInfoType from './PokemonInfoType';
-const PokemonInfo = ({ pokemon, back }) => {
+
+const PokemonInfo = ({ setErrors, P, pokemonSelected, back }) => {
     const [pokemonDetails, setPokemonDetails] = useState(null);
-    const fetchDetailsData = async () => {
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
-        response
-            .json()
-            .then(response => setPokemonDetails(response))
-    }
-    fetchDetailsData();
+    const fetchPokemonData = async () => {
+        try {
+            const response = (await P.getPokemonByName(pokemonSelected));
+            setPokemonDetails(response)
+        } catch (e) {
+            setErrors("Error, list of pokemon : " + e.message);
+        }
+    };
+    
+    useEffect(() => {
+        fetchPokemonData();
+    })
     return (
         <div>
-        <PokemonInfoImage pokemon={pokemonDetails}/>
-        <PokemonInfoAbilities pokemon={pokemonDetails}/>
-        <PokemonInfoBaseStats pokemon={pokemonDetails}/>
-        <PokemonInfoType pokemon={pokemonDetails}/>
+        <PokemonInfoImage pokemonDetails={pokemonDetails}/>
+        <PokemonInfoAbilities pokemonDetails={pokemonDetails}/>
+        <PokemonInfoBaseStats pokemonDetails={pokemonDetails}/>
+        <PokemonInfoType pokemonDetails={pokemonDetails}/>
         <button onClick={() => back()}>Back</button>
         </div>
     )
