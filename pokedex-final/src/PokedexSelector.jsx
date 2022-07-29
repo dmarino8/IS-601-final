@@ -16,7 +16,7 @@ const PokedexSelector = ({ setErrors, P, setPokedexSelected }) => {
 
     useEffect(() => {
         fetchPokedexData();
-    }, [P, setErrors]);
+    }, [P, setErrors]); 
 
 
     return (

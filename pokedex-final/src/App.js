@@ -17,11 +17,13 @@ const App = () => {
 
     return (
         <div>
-            <h1>This should be here</h1>
+            {hasError !== null ? 
+            <h1>There was an error</h1> : null}
             <h1>{pokedexSelected}</h1>
             {pokedexSelected === null ?
             <PokedexSelector setErrors={setErrors} P={P} setPokedexSelected={setPokedexSelected}/> 
             : <PokemonSelector setErrors={setErrors} P={P} pokedexSelected={pokedexSelected} backToPokedexSelect={backToPokedexSelect}/>}
+            
         </div>
     );
 }
