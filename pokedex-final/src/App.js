@@ -17,6 +17,7 @@ const App = () => {
 
     return (
         <div>
+            <h1>This should be here</h1>
             <h1>{pokedexSelected}</h1>
             {pokedexSelected === null ?
             <PokedexSelector setErrors={setErrors} P={P} setPokedexSelected={setPokedexSelected}/> 
