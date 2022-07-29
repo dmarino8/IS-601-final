@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './PokedexSelector.css';
 
-const PokedexSelector = ({setErrors, P, setPokedexSelected}) => {
+const PokedexSelector = ({ setErrors, P, setPokedexSelected }) => {
 
     const [pokedexOptions, setPokedexOptions] = useState([]);
 
@@ -17,14 +17,14 @@ const PokedexSelector = ({setErrors, P, setPokedexSelected}) => {
     useEffect(() => {
         fetchPokedexData();
     }, [P, setErrors]);
-    
+
 
     return (
         pokedexOptions.map(pokedex =>
-        <tr>
-            <td>{pokedex.name}</td>
-            <button onClick={() => setPokedexSelected(pokedex.name)}>view</button>
-        </tr>
+            <tr>
+                <td>{pokedex.name}</td>
+                <button onClick={() => setPokedexSelected(pokedex.name)}>view</button>
+            </tr>
         )
     )
 }
