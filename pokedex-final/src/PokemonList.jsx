@@ -1,12 +1,17 @@
-
+import { useState } from 'react';
+import './PokemonSelector.css';
 const PokemonList = ({pokemonOptions, setPokemonSelected}) => {
-
+    function changeBackgroundTrue(e) {
+        e.target.style.background = '#c7a008';
+    }
+    function changeBackgroundFalse(e) {
+        e.target.style.background = '#ffcb05';
+    }
     return (
         pokemonOptions.map(pokemon =>
-            <tr>
-                <td>{pokemon.pokemon_species.name}</td>
-                <button onClick={() => setPokemonSelected(pokemon.pokemon_species.name)}>View Details</button>
-            </tr>
+            <div className="grid-item" onClick={() => setPokemonSelected(pokemon.pokemon_species.name)} onMouseOver={changeBackgroundTrue} onMouseLeave={changeBackgroundFalse}>
+                {pokemon.pokemon_species.name}
+            </div>
         )
     )
 }
