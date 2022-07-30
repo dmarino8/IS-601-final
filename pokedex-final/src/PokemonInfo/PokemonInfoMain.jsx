@@ -17,7 +17,7 @@ const PokemonInfo = ({ setErrors, P, pokemonSelected, back }) => {
     
     useEffect(() => {
         fetchPokemonData();
-    })
+    }, [P, setErrors])
     return (
         <div>
         <PokemonInfoImage pokemonDetails={pokemonDetails}/>
