@@ -37,7 +37,7 @@ const PokemonSelector = ({setErrors, P, pokedexSelected, backToPokedexSelect }) 
             return (
                 
                 <div className='grid-container'>
-                    <button onClick={() => backToPokedexSelect()} className='grid-item' onMouseOver={changeBackgroundTrue} onMouseLeave={changeBackgroundFalse}>Back</button>
+                    <button onClick={() => backToPokedexSelect()} className='grid-item back'>Back</button>
                     <PokemonList pokemonOptions={pokemonOptions} setPokemonSelected={setPokemonSelected} P={P} setErrors={setErrors} />
                 </div>
             )
