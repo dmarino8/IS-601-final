@@ -16,16 +16,29 @@ const PokedexSelector = ({ setErrors, P, setPokedexSelected }) => {
 
     useEffect(() => {
         fetchPokedexData();
-    }, [P, setErrors]); 
+    }, [P, setErrors]);
 
+    function changeBackgroundTrue(e) {
+        e.target.style.background = '#c7a008';
+    }
+    function changeBackgroundFalse(e) {
+        e.target.style.background = '#ffcb05';
+    }
+
+    const getMapped = (input) => {
+        return (
+            input.map(pokedex =>
+                <div className='grid-item' onClick={() => setPokedexSelected(pokedex.name)} onMouseOver={changeBackgroundTrue} onMouseLeave={changeBackgroundFalse}>
+                    {pokedex.name}
+                </div>
+            )
+        )
+    }
 
     return (
-        pokedexOptions.map(pokedex =>
-            <tr>
-                <td>{pokedex.name}</td>
-                <button onClick={() => setPokedexSelected(pokedex.name)}>view</button>
-            </tr>
-        )
+        <div className='grid-container'>
+            {getMapped(pokedexOptions)}
+        </div>
     )
 }
 

@@ -23,7 +23,6 @@ const App = () => {
             {pokedexSelected === null ?
             <PokedexSelector setErrors={setErrors} P={P} setPokedexSelected={setPokedexSelected}/> 
             : <PokemonSelector setErrors={setErrors} P={P} pokedexSelected={pokedexSelected} backToPokedexSelect={backToPokedexSelect}/>}
-            
         </div>
     );
 }
