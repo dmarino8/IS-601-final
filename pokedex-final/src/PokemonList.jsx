@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import React from 'react'
 import './PokemonSelector.css';
 const PokemonList = ({pokemonOptions, setPokemonSelected}) => {
     function changeBackgroundTrue(e) {
